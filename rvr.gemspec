@@ -1,22 +1,22 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "rvr/version"
+require File.expand_path('../version', __FILE__)
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "rvr"
   s.version     = Rvr::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Rvr."
-  s.description = "TODO: Description of Rvr."
+  s.authors     = ["Szymon Rut"]
+  s.email       = ["rut.szymon@gmail.com"]
+  s.homepage    = "https://github.com/RutSzymon/rvr"
+  s.summary     = %q{ REGON validator }
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.0.0"
+  s.add_runtime_dependency "activemodel"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "debugger"
+  s.add_development_dependency "rspec"
 end
