@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{ REGON validator }
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/*"]
 
   s.add_runtime_dependency "activemodel"
 
