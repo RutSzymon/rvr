@@ -20,15 +20,15 @@ Or install it yourself as:
 
 Just build new object of Rvr class with REGON number and call valid? method:
 
-	$ Rvr.new("REGON NUMBER").valid?
+	Rvr.new("REGON NUMBER").valid?
 
 ## Example
 
-	$ validate :verify_regon
-	$
-	$ def verify_regon
-	$  	errors.add(:regon) unless Rvr.new(regon).valid?
-	$ end
+	validate :verify_regon
+
+	def verify_regon
+	 	errors.add(:regon) unless Rvr.new(regon).valid?
+	end
 
 ## Contributing
 
