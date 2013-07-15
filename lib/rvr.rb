@@ -7,7 +7,7 @@ class Rvr
 
   validates :regon, presence: true, numericality: true
   validate :check_length
-  validate :checksum
+  validate :checksum, if: :regon?
 
   def initialize(value)
     self.regon = value
@@ -22,18 +22,22 @@ class Rvr
     errors.add(:regon) unless regon.size == 9 || regon.size == 14
   end
 
+  def regon?
+    !regon.blank?
+  end
+
   def checksum
-    errors.add(:regon) unless control_number == regon[8].to_i
+    errors.add(:regon) unless control_number == regon[regon.length-1].to_i
   end
 
   def control_number
-    s = 0
-    (0..7).each { |i| s += (regon[i].to_i*control_array[i]) }
+    r = regon.split("")
+    s = control_array.inject(0) { |sum, a| sum += a*r.shift.to_i }
     s % 11 == 10 ? 0 : s % 11
   end
 
   def control_array
-    [8, 9, 2, 3, 4, 5, 6, 7]
+    regon.length == 9 ? [8, 9, 2, 3, 4, 5, 6, 7] : [2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8]
   end
 end
 

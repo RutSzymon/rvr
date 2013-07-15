@@ -49,6 +49,10 @@ describe Rvr do
         it { Rvr.new("000515780").should be_valid }
 
         it { Rvr.new("14-00-92-077").should be_valid }
+
+        it { Rvr.new(12345678512347).should be_valid }
+
+        it { Rvr.new("235 113 328 571 88").should be_valid }
       end
     end
   end
