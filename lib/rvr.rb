@@ -5,7 +5,8 @@ class Rvr
 
   attr_accessor :regon
 
-  validates :regon, presence: true, numericality: true, length: { is: 9 }
+  validates :regon, presence: true, numericality: true
+  validate :check_length
   validate :checksum
 
   def initialize(value)
@@ -17,6 +18,10 @@ class Rvr
   end
 
   private
+  def check_length
+    errors.add(:regon) unless regon.size == 9 || regon.size == 14
+  end
+
   def checksum
     errors.add(:regon) unless control_number == regon[8].to_i
   end
